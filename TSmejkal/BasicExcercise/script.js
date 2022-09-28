@@ -11,23 +11,28 @@ console.log(max);
 
 //Excercise 2
 
-let inputTemp = parseInt(document.getElementById("inputWeather"));
-console.log(inputTemp);
-let btnClick = document.getElementById("btn");
-let output = document.getElementById("output");
-
-function weather(temp) {
+function weather() {
+  //always need to convert to Number because HTML always parse as a String to Javascript
+  var temp = Number(document.getElementById("inputWeather").value);
   console.log(temp);
+
+  let result = document.getElementById("result");
+  let forecast = document.getElementById("forecast");
+
   if (temp < 10 && temp > -50) {
-    console.log("The weather is cold");
+    forecast.innerHTML = `<img src="images/cloud-snow.svg">`;
+    result.innerHTML = "The weather is cold";
   } else if (temp < 20 && temp >= 10) {
-    console.log("The weather is moderate");
+    forecast.innerHTML = `<img src="images/cloud-moon.svg">`;
+    result.innerHTML = "The weather is moderate";
   } else if (temp < 32 && temp >= 20) {
-    console.log("The weather is warm");
-  } else if(temp>= 32){
-    console.log("The weather is hot");
+    forecast.innerHTML = `<img src="images/cloud-haze.svg">`;
+    result.innerHTML = "The weather is warm";
+  } else if (temp >= 32) {
+    forecast.innerHTML = `<img src="images/cloud-sun.svg">`;
+    result.innerHTML = "The weather is hot";
   }
+  console.log(result);
 }
 
-weather(inputTemp);
-// btnClick.addEventListener("click", weather(inputTemp));
+document.getElementById("submit").addEventListener("click", weather); //by default is false and sometimes can omit it.
